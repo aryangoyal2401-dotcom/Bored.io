@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+**/dist/
+dist-ssr/
+build/
+**/build/
+*.local
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+env
+secrets.yml
+secrets.json
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.pytest_cache/
+*.log
+
+# Mobile / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+
+# Temporary and backup files
+*.bak
+*.old
+*.tmp
+*.orig
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Project-specific temporary files
+**/simple_backend/data/
+**/simple_backend/config_test.py
+**/simple_backend/main_original.py
+**/simple_backend/main_backup.py
