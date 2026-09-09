@@ -4,7 +4,6 @@ import {
   FiMic, 
   FiFileText, 
   FiMonitor, 
-  FiMap,
   FiArrowRight
 } from 'react-icons/fi'
 
@@ -13,34 +12,26 @@ const HowItWorks = () => {
     {
       id: 1,
       icon: FiMic,
-      title: "Nurse starts Sahayak Listen",
-      description: "Nurse opens the mobile app and starts the visit. Sahayak Listen transcribes the conversation live.",
-      microcopy: "Voice → Text → Key symptoms extracted.",
-      alt: "Phone with microphone icon for voice transcription"
+      title: "Patient arrives at Sahayak Kiosk",
+      description: "The patient authenticates via ABHA/Aadhaar, selects their language, and answers adaptive SOCRATES questions via voice or touch. Emergency red-flags are detected in real-time.",
+      microcopy: "Voice → Text → Key symptoms extracted at the kiosk.",
+      alt: "Kiosk icon for patient self-service intake"
     },
     {
       id: 2,
       icon: FiFileText,
-      title: "Nurse scans documents with Sahayak Scan",
-      description: "Scan prescriptions, reports and notes. AI builds a structured medical history and links it to UHID.",
-      microcopy: "OCR + clinical data extraction.",
+      title: "Documents scanned with Sahayak Scan",
+      description: "Upload prescriptions, lab reports and notes at the kiosk. AI builds a structured medical timeline with drug interaction checks.",
+      microcopy: "OCR + clinical data extraction + chronological ordering.",
       alt: "Document with scan lines for OCR processing"
     },
     {
       id: 3,
       icon: FiMonitor,
-      title: "Doctor sees everything on Sahayak Sync",
-      description: "Before the patient enters, the doctor views the AI-generated history, live transcript and summary.",
+      title: "Practitioner reviews on Sahayak Sync",
+      description: "Before the consultation, the practitioner views the AI-generated 8-section clinical summary, medical timeline, and can accept, amend, or reject the intake.",
       microcopy: "Walk in prepared — diagnose faster.",
       alt: "Desktop dashboard showing patient information"
-    },
-    {
-      id: 4,
-      icon: FiMap,
-      title: "Admin monitors with Sahayak Map",
-      description: "Admins and doctors see regional hotspots and trends that help prioritize resources.",
-      microcopy: "Visual outbreak analytics for preventive action.",
-      alt: "Map with heat spots showing regional data"
     }
   ];
 

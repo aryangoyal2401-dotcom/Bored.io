@@ -90,7 +90,7 @@ const Hero = () => {
               }}
               onClick={() => navigate('/kiosk')}
             >
-              <span>🏥 Launch MediKiosk (Patient Self-Service)</span>
+              <span>🏥 Launch Sahayak Kiosk (Patient Intake)</span>
               <span>➔</span>
             </button>
             <button 
@@ -98,7 +98,7 @@ const Hero = () => {
               style={buttonStyles.secondary}
               onClick={() => navigate('/dashboard')}
             >
-              Doctor Dashboard (Sahayak Sync)
+              Practitioner Dashboard
             </button>
           </div>
 

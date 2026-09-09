@@ -1,6 +1,6 @@
 """
-Kiosk Self-Service API Routes
-Provides endpoints for the patient-operated MediKiosk tablet:
+Sahayak Kiosk API Routes
+Provides endpoints for the practitioner-supervised in-hospital case-taking station:
 - ABHA/Aadhaar verification & OTP mock
 - Granular consent recording
 - Dual-input SOCRATES & AYUSH dialogue turns
@@ -27,7 +27,7 @@ from app.services.storage_service import storage
 from app.services.mongo_service import mongo_service
 from app.services.timeline_service import generate_comprehensive_timeline
 
-router = APIRouter(prefix="/kiosk", tags=["MediKiosk Patient Self-Service"])
+router = APIRouter(prefix="/kiosk", tags=["Sahayak Kiosk — Case-Taking Station"])
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 UPLOADS_DIR = os.path.join(BASE_DIR, "data", "uploads")
@@ -85,7 +85,7 @@ async def record_patient_consent(payload: Dict[str, Any] = Body(...)):
 @router.post("/session/start")
 async def start_kiosk_session(payload: Dict[str, Any] = Body(...)):
     """
-    Initialize patient self-service session at MediKiosk
+    Initialize case-taking session at Sahayak Kiosk
     Accepts mode ('ALLOPATHIC' or 'AYUSH') and language ('hi' or 'en')
     """
     patient_info = payload.get("patient_info", {})
@@ -290,8 +290,8 @@ async def complete_kiosk_session(payload: Dict[str, Any] = Body(...)):
         "gender": patient_info.get("gender", "other"),
         "created_at": datetime.now().isoformat(),
         "last_visit": datetime.now().isoformat(),
-        "intake_mode": "KIOSK_SELF_SERVICE",
-        "intake_system": "MediKiosk v2.0",
+        "intake_mode": "KIOSK_PRACTITIONER_SUPERVISED",
+        "intake_system": "Sahayak Kiosk v1.0",
         "status": "active"
     }
 
@@ -334,8 +334,8 @@ async def complete_kiosk_session(payload: Dict[str, Any] = Body(...)):
         "patient_name": patient_record["name"],
         "token_number": token_number,
         "priority": priority,
-        "status": "ready_for_doctor",  # Directly ready for physician review (bypasses nurse bottleneck)
-        "intake_mode": "kiosk_self_service",
+        "status": "ready_for_review",  # Directly ready for physician review (bypasses nurse bottleneck)
+        "intake_mode": "kiosk_practitioner_supervised",
         "has_red_flags": has_red_flags,
         "red_flag_details": session.get("red_flags"),
         "added_at": datetime.now().isoformat(),
@@ -354,7 +354,7 @@ async def complete_kiosk_session(payload: Dict[str, Any] = Body(...)):
         "note_id": note_id,
         "patient_id": patient_id,
         "created_at": datetime.now().isoformat(),
-        "intake_mode": "kiosk_self_service",
+        "intake_mode": "kiosk_practitioner_supervised",
         "intake_type": session.get("mode", "ALLOPATHIC"),
         "chief_complaint": clinical_summary.get("chief_complaint"),
         "structured_clinical_summary": clinical_summary,
@@ -405,7 +405,7 @@ async def complete_kiosk_session(payload: Dict[str, Any] = Body(...)):
         except Exception as e:
             print(f"⚠️ Could not save timeline to mongo_service: {e}")
 
-    print(f"✅ MediKiosk Intake completed: Token #{token_number} for {patient_record['name']} (Priority: {priority})")
+    print(f"✅ Sahayak Kiosk Intake completed: Token #{token_number} for {patient_record['name']} (Priority: {priority})")
 
     return {
         "success": True,
@@ -432,7 +432,7 @@ async def physician_review_summary(
     payload: Dict[str, Any] = Body(...)
 ):
     """
-    Physician review endpoint on Doctor Dashboard (Swasya Sync):
+    Physician review endpoint on Practitioner Dashboard:
     Allows physician to ACCEPT, AMEND (with inline edits), or REJECT the intake note.
     Ensures AI output is NEVER auto-committed as a medical diagnosis without physician sign-off.
     """

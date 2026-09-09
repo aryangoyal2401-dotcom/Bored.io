@@ -43,18 +43,19 @@ const CoreFeatures = () => {
       id: 4,
       icon: FiMap,
       title: "Sahayak Map",
-      description: "Localized outbreak maps and hotspot alerts for doctors and administrators.",
-      microcopy: "Early detection and targeted responses.",
-      cta: "Explore maps",
-      alt: "Map icon for regional analytics"
+      description: "Regional outbreak maps and health analytics for administrators.",
+      microcopy: "Future scope — not part of core PS 26047 deliverable.",
+      cta: "Coming soon",
+      alt: "Map icon for regional analytics",
+      isComingSoon: true
     },
     {
       id: 5,
       icon: FiLink,
-      title: "Secure UHID Linking",
-      description: "Patient records linked to unique IDs for continuity of care.",
+      title: "ABHA / ABDM Authentication",
+      description: "Patient intake verified via ABHA ID or Aadhaar OTP at the kiosk.",
       microcopy: "Consistent history, less repetition.",
-      cta: "Learn about UHID",
+      cta: "Learn about ABHA",
       alt: "Link icon for patient record connectivity"
     },
     {

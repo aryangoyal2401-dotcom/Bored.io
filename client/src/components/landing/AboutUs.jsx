@@ -33,10 +33,10 @@ const AboutUs = () => {
             className="font-ptserif text-2xl md:text-3xl lg:text-4xl font-normal leading-tight" 
             style={{color: colors.secondary}}
           >
-            At Sahayak, we make healthcare documentation{' '}
-            <span style={{color: colors.primary}}>accessible, personalized, and efficient.</span>{' '}
-            Whether through AI-powered transcription, intelligent data extraction, or seamless workflow integration, 
-            we're here to support healthcare teams—anytime, anywhere.
+            At Sahayak, we make patient case-taking{' '}
+            <span style={{color: colors.primary}}>structured, intelligent, and practitioner-ready.</span>{' '}
+            Through an in-hospital kiosk, AI-powered voice intake, and intelligent document digitization, 
+            we ensure practitioners receive a complete patient story before consultation begins.
           </h2>
         </div>
 
@@ -46,8 +46,8 @@ const AboutUs = () => {
             className="text-md md:text-xl font-light leading-relaxed max-w-3xl"
             style={{color: colors.primary}}
           >
-            Our mission is to eliminate the administrative burden that keeps healthcare professionals 
-            from focusing on what matters most: patient care.
+            Built for SIH 2026 Problem Statement #26047 (Ministry of AYUSH) — our mission is to 
+            digitize and streamline the case-taking process at primary healthcare centers across India.
           </p>
         </div>
       </div>

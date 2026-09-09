@@ -40,6 +40,26 @@ const Kiosk = () => {
 
   const isHindi = language === 'hi';
 
+  // Idle timeout — auto-reset kiosk after 5 minutes of inactivity
+  React.useEffect(() => {
+    let timer;
+    const resetTimer = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (currentStep !== 'language') {
+          handleResetKiosk();
+        }
+      }, 5 * 60 * 1000); // 5 minutes
+    };
+    const events = ['mousedown', 'mousemove', 'keypress', 'touchstart', 'scroll'];
+    events.forEach(e => window.addEventListener(e, resetTimer));
+    resetTimer();
+    return () => {
+      clearTimeout(timer);
+      events.forEach(e => window.removeEventListener(e, resetTimer));
+    };
+  }, [currentStep]);
+
   const handleToggleSound = () => {
     if (!isMuted) {
       speechService.stopSpeaking();
@@ -173,10 +193,10 @@ const Kiosk = () => {
         structured_summary: {
           chief_complaint: derivedComplaint,
           history_of_present_illness: hasAnswers
-            ? 'Patient reported symptoms through MediKiosk self-service intake.'
+            ? 'Patient reported symptoms through Sahayak Kiosk self-service intake.'
             : (primaryExtractedDx 
                 ? `Patient presented with clinical condition: ${primaryExtractedDx}. Prior medical records and prescriptions were uploaded and digitized.`
-                : 'Patient uploaded clinical records directly at MediKiosk for in-person physician evaluation.'),
+                : 'Patient uploaded clinical records directly at Sahayak Kiosk for in-person physician evaluation.'),
           past_medical_surgical_history: hasDocs 
             ? (documentsList.length > 1 ? `${documentsList.length} clinical documents uploaded.` : `Prescription/document attached: ${docFile?.name || 'Attached record'}`)
             : 'No prior records uploaded.',
@@ -225,14 +245,14 @@ const Kiosk = () => {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-sky-700 transition-colors">
-                    MediKiosk
+                    Sahayak Kiosk
                   </span>
                   <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
                     Clinical Intake
                   </span>
                 </div>
                 <div className="text-xs text-slate-500">
-                  Sahayak • National Health Authority Standard
+                  Sahayak Kiosk • Practitioner-Supervised Intake
                 </div>
               </div>
             </button>
@@ -263,15 +283,15 @@ const Kiosk = () => {
               <span>Emergency 108</span>
             </a>
 
-            {/* Nurse Assist Mode Toggle */}
+            {/* Staff Assist Mode Toggle */}
             <button
               type="button"
-              onClick={() => alert(isHindi ? 'नर्स सहायता मोड: कृपया सहायता काउंटर या नर्स ऐप का उपयोग करें।' : 'Nurse Assist Mode: Staff member can guide the intake on mobile.')}
+              onClick={() => alert(isHindi ? 'सहायता मोड: एक स्वास्थ्य कार्यकर्ता आपकी मदद कर सकते हैं।' : 'Staff Assist: A healthcare worker can help guide you through this intake.')}
               className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-medium transition-colors"
-              title="Assisted Intake for elderly or differently-abled patients"
+              title="Assisted intake for elderly or differently-abled patients"
             >
               <FiHelpCircle size={14} className="text-sky-600" />
-              <span>{isHindi ? 'नर्स सहायता (वैकल्पिक)' : 'Nurse Assist'}</span>
+              <span>{isHindi ? 'सहायता (वैकल्पिक)' : 'Staff Assist'}</span>
             </button>
 
             {/* Doctor Dashboard Link */}
@@ -372,7 +392,7 @@ const Kiosk = () => {
       {/* Footer / Emergency Note */}
       <footer className="border-t border-slate-200 bg-white py-3 px-6 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
         <div>
-          MediKiosk v2.0 • ABDM M1/M2/M3 Compliant • Primary Healthcare Center
+          Sahayak Kiosk v2.0 • ABDM M1/M2/M3 Compliant • Primary Healthcare Center
         </div>
         <div className="flex items-center gap-4 text-[11px]">
           <span className="text-sky-700 font-medium">● Live Dual-Input Audio Ready</span>

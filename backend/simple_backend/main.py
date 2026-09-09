@@ -37,7 +37,7 @@ if missing_keys:
 app = FastAPI(
     title="Sahayak Backend",
     description="""
-    ## 🏥 Sahayak — AI-Powered Primary Healthcare Assistant
+    ## 🏥 Sahayak — Patient Case-Taking Software (PS #26047)
     
     Complete backend system for Indian PHCs featuring:
     - **Patient Registration & Management**
@@ -54,8 +54,8 @@ app = FastAPI(
     - 💾 JSON-based storage (ready for DynamoDB migration)
     
     ### Target Users:
-    - **Nurses** - Mobile app for data input
-    - **Doctors** - Web dashboard for patient history
+    - **Patients** - Self-service intake at Sahayak Kiosk
+    - **Practitioners** - Supervise intake + review AI summaries on dashboard
     """,
     version="3.0.0",
     contact={

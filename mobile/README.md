@@ -1,63 +1,21 @@
-﻿# Sahayak — Nurse Mobile App (Flutter)
+# Sahayak — Nurse Mobile App (LEGACY)
 
-## Overview
-Mobile app for nurses to register patients, record conversations, and scan documents.
+> ⚠️ **LEGACY CODE — NOT PART OF PS 26047 DELIVERABLE**
+>
+> This Flutter mobile app was part of the original hackathon project. The primary
+> intake interface for PS #26047 (Patient Case-Taking Software) is the
+> **Sahayak Kiosk** — a web-based, in-hospital kiosk application.
+>
+> This directory is retained for reference only. Do not extend or deploy this
+> mobile app as part of the SIH 2026 submission.
 
-## Features
-- Nurse Dashboard
-- Patient Registration
-- AI Scribe (Audio Recording)
-- AI Digitizer (Document Scanning)
+## What This Was
 
-## Tech Stack
-- Flutter 3.x
-- Dart 3.x
-- Key Packages:
-  - `http` - API calls
-  - `flutter_sound` - Audio recording
-  - `camera` - Image capture
-  - `path_provider` - File storage
+A Flutter app originally used by nurses to record voice conversations with patients
+and scan documents via phone camera. This functionality has been migrated to the
+Sahayak Kiosk web interface (`/kiosk`), which runs on fixed in-hospital terminals.
 
-## Setup
+## Current Deliverable
 
-```bash
-# Navigate to the app directory
-cd nurse_app
-
-# Get dependencies
-flutter pub get
-
-# Run on Android emulator/device
-flutter run
-```
-
-## Project Structure
-```
-lib/
-├── main.dart              # App entry point
-├── screens/
-│   ├── dashboard.dart     # Nurse dashboard
-│   ├── patient_registration.dart
-│   ├── ai_scribe.dart     # Audio recording
-│   └── ai_digitizer.dart  # Document scanning
-├── services/
-│   ├── api_service.dart   # Backend API calls
-│   └── s3_service.dart    # S3 uploads
-└── models/
-    └── patient.dart       # Patient data model
-```
-
-## Build APK
-```bash
-flutter build apk --release
-# APK will be at: build/app/outputs/flutter-apk/app-release.apk
-```
-
-## Environment Variables
-Create `lib/config.dart`:
-```dart
-class Config {
-  static const String apiEndpoint = 'https://your-api-gateway-url.com/Prod';
-  static const String region = 'ap-south-1';
-}
-```
+See the [Sahayak Kiosk](../client/src/pages/Kiosk.jsx) and the
+[project README](../README.md) for the active case-taking interface.
